@@ -12,6 +12,7 @@ export const ProductSection = (): JSX.Element => {
             addItems();
         }
         moviesItems.forEach((item) => console.log(item));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (isError) {

@@ -2,7 +2,6 @@
 import { useMoviesStore } from '@/lib/store/moviesStore';
 import React, { type JSX } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { ImageComponent } from './Image';
 
 type CardDescriptionProps = {
