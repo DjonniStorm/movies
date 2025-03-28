@@ -63,16 +63,6 @@ export const useMoviesStore = create<MoviesStore>()(
         reactItem: (id: string, reaction: 'like' | 'dislike') => {
             const items = get().moviesItems;
             const _item = items.find((item) => item.id === id);
-            console.log(_item, typeof id);
-            items.find((item) => {
-                console.log(
-                    item.id,
-                    item.id === id,
-                    item.id === String(id),
-                    String(id),
-                );
-                return item.id === id;
-            });
             if (!_item) {
                 return;
             }
@@ -89,9 +79,7 @@ export const useMoviesStore = create<MoviesStore>()(
                     ...state,
                     moviesItems: items.map((item) => {
                         if (item.id === _item.id) {
-                            const likedItem = item;
-                            likedItem.like = true;
-                            return likedItem;
+                            return {...item, like: true};
                         }
                         return item;
                     }),
