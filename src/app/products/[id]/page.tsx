@@ -1,5 +1,5 @@
-import { CardDescription } from '@/lib/components/features/CardDescription';
-import { Metadata } from 'next';
+import { ProductDescription } from '@/lib/components/features/ProductDescription';
+import type { Metadata } from 'next';
 
 type Props = {
     params: Promise<{
@@ -16,7 +16,7 @@ export default async function ProductInfoPage({ params }: Props) {
     const { id } = await params;
     return (
         <main className="flex-1 w-full">
-            <CardDescription id={parseInt(id)} />
+            <ProductDescription id={id} />
         </main>
     );
 }

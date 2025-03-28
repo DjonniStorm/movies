@@ -3,6 +3,7 @@
 import { useState, type JSX } from 'react';
 import { useMoviesStore } from '@/lib/store/moviesStore';
 import { DislikeReaction, LikeReaction } from './Reactions';
+import { Filter } from '../ui/Filter';
 
 type ReactionProps = {
     id: string;

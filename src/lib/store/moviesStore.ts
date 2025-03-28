@@ -7,9 +7,11 @@ type MoviesStore = {
     moviesItems: Array<Movie>;
     isLoading: boolean;
     isError: boolean;
+    isFilter: boolean;
     addItems: () => Promise<void>;
-    getItem: (id: string | number) => Movie | undefined;
     addItem: (movie: Movie) => void;
+    setFilter: (flag: boolean) => void;
+    getItem: (id: string | number) => Movie | undefined;
     reactItem: (id: string, reaction: 'like' | 'dislike') => void;
 };
 
@@ -18,15 +20,26 @@ export const useMoviesStore = create<MoviesStore>()(
         moviesItems: [],
         isLoading: true,
         isError: false,
+        isFilter: false,
+        setFilter: (flag: boolean) => {
+            set((state) => ({
+                ...state,
+                isFilter: flag,
+            }));
+        },
         addItems: async () => {
             try {
                 const items = await getMovies();
                 if (items instanceof Error) {
                     throw items;
                 }
+                const addedItems = items.map((item) => ({
+                    ...item,
+                    like: false,
+                }));
                 set((state) => ({
                     ...state,
-                    moviesItems: items,
+                    moviesItems: addedItems,
                     isLoading: false,
                 }));
             } catch (e: unknown) {
@@ -45,7 +58,17 @@ export const useMoviesStore = create<MoviesStore>()(
         },
         reactItem: (id: string, reaction: 'like' | 'dislike') => {
             const items = get().moviesItems;
-            const _item = items.find((item) => item.id === String(id));
+            const _item = items.find((item) => item.id === id);
+            console.log(_item, typeof id);
+            items.find((item) => {
+                console.log(
+                    item.id,
+                    item.id === id,
+                    item.id === String(id),
+                    String(id),
+                );
+                return item.id === id;
+            });
             if (!_item) {
                 return;
             }

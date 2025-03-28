@@ -2,7 +2,6 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
     /* config options here */
-    output: 'export',
     images: {
         remotePatterns: [
             // это для загрузки картинок
@@ -16,6 +15,7 @@ const nextConfig: NextConfig = {
                 hostname: 'image.openmoviedb.com',
             },
         ],
+        unoptimized: true,
     },
 };
 

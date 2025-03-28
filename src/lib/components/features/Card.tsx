@@ -19,7 +19,7 @@ export const Card = ({
 }: CardProps): JSX.Element => {
     return (
         <div className="">
-            <Link href={link}>
+            <Link href={link} className="flex justify-center">
                 <div className="flex flex-col gap-y-2 p-1 relative w-60 h-80 max-h-[400px] border border-black rounded-lg overflow-hidden">
                     <div className="absolute top-1 right-1 text-sm">
                         {ageRating >= 0 && <p>{ageRating}+</p>}
@@ -46,7 +46,7 @@ export const Card = ({
                             <p className="text-sm">{year}</p>
                         </div>
                         <p
-                            className="px-2 text-sm line-clamp-2 overflow-hidden text-ellipsis"
+                            className="text-sm text-gray-600 line-clamp-3 leading-relaxed"
                             title={shortDescription}
                         >
                             {shortDescription}
