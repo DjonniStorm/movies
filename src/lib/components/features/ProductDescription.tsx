@@ -14,6 +14,7 @@ export const ProductDescription = ({
 }: ProductDescriptionProps): JSX.Element => {
     const { getItem } = useMoviesStore();
     const item = getItem(id);
+    console.log('id', id, item);
     const router = useRouter();
 
     const handleClick = () => {

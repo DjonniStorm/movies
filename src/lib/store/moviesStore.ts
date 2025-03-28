@@ -36,6 +36,7 @@ export const useMoviesStore = create<MoviesStore>()(
                 const addedItems = items.map((item) => ({
                     ...item,
                     like: false,
+                    id: item.id.toString()
                 }));
                 set((state) => ({
                     ...state,
@@ -48,7 +49,10 @@ export const useMoviesStore = create<MoviesStore>()(
             }
         },
         getItem: (id: string | number) => {
-            return get().moviesItems.find((item) => item.id === String(id));
+            return get().moviesItems.find((item) => {
+                console.log(id, typeof id, item.id, typeof item.id, id === item.id);
+                return item.id === String(id);
+            });
         },
         addItem: (movie: Movie) => {
             set((state) => ({
