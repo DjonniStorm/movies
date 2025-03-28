@@ -15,27 +15,24 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v1
               with:
-                  node-version: '20'
-                  cache: 'npm'
+                  bun-version: latest
 
             - name: Setup Pages
               uses: actions/configure-pages@v5
               with:
-                  # Automatically inject basePath in your Next.js configuration file and disable
-                  # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
                   static_site_generator: next
 
             - name: Install dependencies
-              run: npm ci
+              run: bun install --frozen-lockfile
 
             - name: Build with Next.js
               env:
                   NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
                   NEXT_PUBLIC_API_KEY: ${{ secrets.NEXT_PUBLIC_API_KEY }}
-              run: npm run pages
+              run: bun run pages
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3

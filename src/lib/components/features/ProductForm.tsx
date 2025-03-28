@@ -74,6 +74,7 @@ export const ProductForm = (): JSX.Element => {
                 url: data.cover,
                 previewUrl: data.cover,
             },
+            like: false,
         };
 
         addItem(newMovie);
@@ -96,6 +97,7 @@ export const ProductForm = (): JSX.Element => {
                     className="border border-secondary rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-secondary placeholder:text-secondary"
                     type="text"
                     placeholder="название"
+                    autoComplete="name"
                     required
                     {...register('name')}
                 />
@@ -111,6 +113,7 @@ export const ProductForm = (): JSX.Element => {
                     type="number"
                     {...register('year')}
                     placeholder="год выхода"
+                    required
                     className="border border-secondary rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-secondary placeholder:text-secondary"
                 />
                 {errors.year && (
@@ -125,6 +128,7 @@ export const ProductForm = (): JSX.Element => {
                     type="number"
                     {...register('ageRating')}
                     placeholder="возрастной рейтинг"
+                    required
                     className="border border-secondary rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-secondary placeholder:text-secondary"
                 />
                 {errors.ageRating && (
@@ -139,6 +143,7 @@ export const ProductForm = (): JSX.Element => {
                     type="url"
                     {...register('cover')}
                     placeholder="ссылка на картинку"
+                    required
                     className="border border-secondary rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-secondary placeholder:text-secondary"
                 />
                 {errors.cover && (
@@ -153,6 +158,8 @@ export const ProductForm = (): JSX.Element => {
                     {...register('shortDescription')}
                     placeholder="аннотация"
                     className="resize-none h-14 border border-secondary rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-secondary placeholder:text-secondary"
+                    spellCheck
+                    required
                 />
                 {errors.shortDescription && (
                     <span className="text-red-600 text-center">
@@ -165,6 +172,8 @@ export const ProductForm = (): JSX.Element => {
                 <textarea
                     placeholder="описание"
                     {...register('description')}
+                    spellCheck
+                    required
                     className="resize-none h-20 border border-secondary rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-secondary placeholder:text-secondary"
                 />
                 {errors.description && (
